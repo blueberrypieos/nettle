@@ -12,7 +12,7 @@ jobs:
     uses: blueberrypieos/workflows/.github/workflows/build.yml@v1
     with:
       ports-repository: https://blueberrypieos.com/apt blueberry-pie-os
-      ports-components: core
+      ports-components: core community
       ports-keyring-url: https://blueberrypieos.com/apt/pie-archive-keyring.asc
   attest:
     needs: build
