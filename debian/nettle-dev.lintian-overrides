@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: BSD-2-Clause
+# Copyright (c) 2026 The Blueberry Pie OS Authors
+nettle-dev: copyright-file-contains-full-gpl-license
+nettle-dev: copyright-not-using-common-license-for-lgpl
+nettle-dev: old-fsf-address-in-copyright-file
+nettle-dev: initial-upload-closes-no-bugs [usr/share/doc/nettle-dev/changelog.Debian.gz:1]
+nettle-dev: pkg-config-unavailable-for-cross-compilation [usr/lib/pkgconfig/hogweed.pc]
+nettle-dev: pkg-config-unavailable-for-cross-compilation [usr/lib/pkgconfig/nettle.pc]

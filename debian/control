@@ -1,0 +1,34 @@
+Source: nettle
+Section: libs
+Priority: optional
+Maintainer: Maxwell <maxwell@blueberrypieos.com>
+Build-Depends: pietoolchain (>= 0.1.0), autoconf (>= 2.70), libgmp-dev (>= 6.3.0)
+Standards-Version: 4.7.3
+Homepage: https://www.lysator.liu.se/~nisse/nettle/
+Vcs-Git: https://github.com/blueberrypieos/nettle.git -b blueberry-pie-os/latest
+Vcs-Browser: https://github.com/blueberrypieos/nettle
+Rules-Requires-Root: no
+
+Package: libnettle
+Architecture: darwin-arm64
+Depends: libsystem
+Description: low-level cryptographic library
+ Nettle provides symmetric ciphers, cryptographic hash functions,
+ message authentication codes and key derivation functions.
+ The Serpent ciphers and the knuth-lfib generator are left out.
+
+Package: libhogweed
+Architecture: darwin-arm64
+Depends: libnettle (= ${binary:Version}), libgmp (>= 6.3.0), libsystem
+Description: public-key cryptographic library
+ Hogweed provides public-key cryptographic algorithms using Nettle
+ and multiple-precision arithmetic from GMP.
+
+Package: nettle-dev
+Section: libdevel
+Architecture: darwin-arm64
+Depends: libnettle (= ${binary:Version}), libhogweed (= ${binary:Version}), libgmp-dev (>= 6.3.0)
+Description: cryptographic libraries: development files
+ Headers, shared library links and pkg-config files for building
+ programs against Nettle and Hogweed. There is no serpent.h or
+ knuth-lfib.h.

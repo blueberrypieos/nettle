@@ -1,0 +1,105 @@
+Description: Serpent and knuth-lfib are left out
+ knuth-lfib.c includes code copied verbatim from Knuth's TAoCP, and its
+ author did not ask Knuth for permission. The Serpent files are derived
+ from Libgcrypt's serpent.c, and the adaptation replaced libgcrypt with
+ nettle in their licence template. Without them, libnettle has no
+ Serpent ciphers and no knuth_lfib functions, and nettle-dev has no
+ serpent.h or knuth-lfib.h. nettle_ciphers no longer lists serpent128,
+ serpent192 or serpent256.
+Author: The Blueberry Pie OS Authors
+Forwarded: not-needed
+Last-Update: 2026-11-04
+---
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -1,3 +1,4 @@
++# Modified 2026-11-04: Serpent and knuth-lfib are left out (GPL-2.0 section 2(a), GPL-3.0 section 5(a)).
+ # Nettle Makefile
+ 
+ @SET_MAKE@
+@@ -128,7 +129,7 @@ nettle_SOURCES = aes-decrypt-internal.c
+ 		 hmac-sha224-meta.c hmac-sha256-meta.c hmac-sha384-meta.c \
+ 		 hmac-sha512-meta.c hmac-gosthash94-meta.c \
+ 		 hmac-streebog-meta.c hmac-sm3-meta.c \
+-		 knuth-lfib.c hkdf.c \
++		 hkdf.c \
+ 		 md2.c md2-meta.c md4.c md4-meta.c \
+ 		 md5.c md5-compat.c md5-meta.c \
+ 		 memeql-sec.c memxor.c memxor3.c \
+@@ -154,8 +155,6 @@ nettle_SOURCES = aes-decrypt-internal.c
+ 		 sha3-384.c sha3-384-meta.c sha3-512.c sha3-512-meta.c \
+ 		 sha3-shake.c shake128.c shake256.c \
+ 		 sm3.c sm3-meta.c \
+-		 serpent-set-key.c serpent-encrypt.c serpent-decrypt.c \
+-		 serpent-meta.c \
+ 		 streebog.c streebog-meta.c \
+ 		 twofish.c twofish-meta.c \
+ 		 sm4.c sm4-meta.c \
+@@ -236,7 +235,7 @@ HEADERS = aes.h arcfour.h arctwo.h asn1.
+ 	  curve25519.h curve448.h des.h dsa.h dsa-compat.h eax.h \
+ 	  ecc-curve.h ecc.h ecdsa.h eddsa.h \
+ 	  gcm.h gostdsa.h gosthash94.h hmac.h \
+-	  knuth-lfib.h hkdf.h \
++	  hkdf.h \
+ 	  macros.h \
+ 	  cmac.h siv-cmac.h siv-gcm.h \
+ 	  md2.h md4.h \
+@@ -245,7 +244,7 @@ HEADERS = aes.h arcfour.h arctwo.h asn1.
+ 	  nettle-meta.h nettle-types.h \
+ 	  ocb.h pbkdf2.h \
+ 	  pgp.h pkcs1.h pss.h pss-mgf1.h realloc.h ripemd160.h rsa.h \
+-	  salsa20.h sexp.h serpent.h \
++	  salsa20.h sexp.h \
+ 	  sha.h sha1.h sha2.h sha3.h sm3.h sm4.h streebog.h twofish.h \
+ 	  umac.h yarrow.h xts.h poly1305.h nist-keywrap.h \
+ 	  drbg-ctr.h
+@@ -273,7 +272,7 @@ DISTFILES = $(SOURCES) $(HEADERS) getopt
+ 	aes-internal.h block-internal.h blowfish-internal.h bswap-internal.h \
+ 	camellia-internal.h gcm-internal.h \
+ 	ghash-internal.h gost28147-internal.h poly1305-internal.h \
+-	serpent-internal.h cast128_sboxes.h desinfo.h desCode.h \
++	cast128_sboxes.h desinfo.h desCode.h \
+ 	ripemd160-internal.h md-internal.h sha2-internal.h \
+ 	memxor-internal.h nettle-internal.h non-nettle.h nettle-write.h \
+ 	ctr-internal.h chacha-internal.h sha3-internal.h \
+--- a/nettle-meta-ciphers.c
++++ b/nettle-meta-ciphers.c
+@@ -1,5 +1,7 @@
+ /* nettle-meta-ciphers.c
+ 
++   Modified 2026-11-04: Serpent is left out (GPL-2.0 section 2(a), GPL-3.0 section 5(a)).
++
+    Copyright (C) 2011 Daniel Kahn Gillmor
+ 
+    This file is part of GNU Nettle.
+@@ -44,9 +46,6 @@ const struct nettle_cipher * const _nett
+   &nettle_camellia192,
+   &nettle_camellia256,
+   &nettle_cast128,
+-  &nettle_serpent128,
+-  &nettle_serpent192,
+-  &nettle_serpent256,
+   &nettle_twofish128,
+   &nettle_twofish192,
+   &nettle_twofish256,
+--- a/nettle-meta.h
++++ b/nettle-meta.h
+@@ -1,5 +1,7 @@
+ /* nettle-meta.h
+ 
++   Modified 2026-11-04: Serpent is left out (GPL-2.0 section 2(a), GPL-3.0 section 5(a)).
++
+    Information about algorithms.
+ 
+    Copyright (C) 2002, 2014, 2020 Niels Möller
+@@ -76,10 +78,6 @@ extern const struct nettle_cipher nettle
+ 
+ extern const struct nettle_cipher nettle_cast128;
+ 
+-extern const struct nettle_cipher nettle_serpent128;
+-extern const struct nettle_cipher nettle_serpent192;
+-extern const struct nettle_cipher nettle_serpent256;
+-
+ extern const struct nettle_cipher nettle_twofish128;
+ extern const struct nettle_cipher nettle_twofish192;
+ extern const struct nettle_cipher nettle_twofish256;

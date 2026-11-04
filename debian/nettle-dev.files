@@ -1,0 +1,6 @@
+usr/include/*
+usr/lib/pkgconfig/*
+usr/lib/libnettle.dylib
+usr/lib/libhogweed.dylib
+usr/share/doc/nettle-dev/changelog.Debian.gz
+usr/share/lintian/overrides/nettle-dev

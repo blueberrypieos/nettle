@@ -1,0 +1,50 @@
+Description: Only the libraries are configured
+ The packages ship only libnettle, libhogweed, their headers and
+ pkg-config files. Without tools, testsuite and examples in SUBDIRS and
+ AC_CONFIG_FILES, configure does not read their makefiles. config.m4 is
+ only used to build assembler sources, and the build has none, so the
+ assembler must stay disabled. The Darwin link uses no linker version
+ scripts, so libnettle.map and libhogweed.map are not made.
+Author: The Blueberry Pie OS Authors
+Forwarded: not-needed
+Last-Update: 2026-11-04
+---
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -1,4 +1,5 @@
+ # Modified 2026-11-04: Serpent and knuth-lfib are left out (GPL-2.0 section 2(a), GPL-3.0 section 5(a)).
++# Modified 2026-11-04: there are no subdirectories (GPL-2.0 section 2(a), GPL-3.0 section 5(a)).
+ # Nettle Makefile
+ 
+ @SET_MAKE@
+@@ -20,7 +21,7 @@ OPT_NETTLE_SOURCES = @OPT_NETTLE_SOURCES
+ 
+ FAT_TEST_LIST = @FAT_TEST_LIST@
+ 
+-SUBDIRS = tools testsuite examples
++SUBDIRS =
+ 
+ include config.make
+ 
+--- a/configure.ac
++++ b/configure.ac
+@@ -1,6 +1,7 @@
+ dnl -*- mode: shell-script; sh-indentation: 2; -*-
+ 
+ dnl Process this file with autoconf to produce a configure script.
++dnl Modified 2026-11-04: only the libraries are configured (GPL-2.0 section 2(a), GPL-3.0 section 5(a)).
+ 
+ AC_INIT([nettle], [3.10.2], [nettle-bugs@lists.lysator.liu.se])
+ AC_PREREQ([2.69])
+@@ -1245,9 +1246,8 @@ if test x$GCC = xyes ; then
+ # inttypes.h.
+ fi
+ 
+-AC_CONFIG_FILES([config.make config.m4 Makefile version.h])
+-AC_CONFIG_FILES([tools/Makefile testsuite/Makefile examples/Makefile])
+-AC_CONFIG_FILES([nettle.pc hogweed.pc libnettle.map libhogweed.map])
++AC_CONFIG_FILES([config.make Makefile version.h])
++AC_CONFIG_FILES([nettle.pc hogweed.pc])
+ 
+ AC_OUTPUT
+ 

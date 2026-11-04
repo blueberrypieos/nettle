@@ -1,0 +1,3 @@
+usr/lib/libhogweed.[0-9]*.dylib
+usr/share/doc/libhogweed/changelog.Debian.gz
+usr/share/lintian/overrides/libhogweed
