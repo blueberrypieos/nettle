@@ -1,3 +1,9 @@
+nettle (3.10.2+ds1-3) blueberry-pie-os; urgency=medium
+
+  * Build-Depend on pietoolchain-host and pietoolchain-sdk.
+
+ -- Maxwell <maxwell@blueberrypieos.com>  Sun, 15 Nov 2026 14:12:24 +0000
+
 nettle (3.10.2+ds1-2) blueberry-pie-os; urgency=medium
 
   * Nettle 3.10.2
